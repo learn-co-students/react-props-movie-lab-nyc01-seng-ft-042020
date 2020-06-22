@@ -18,15 +18,26 @@ export default class CardBack extends Component {
       return <h4>No Rating Found</h4>
     }
   }
-
+  generateGenreString = (genres)=>{
+    const genreString=[]
+    genres.forEach(genre=>{
+      console.log(genre)
+      if(genre!==genres[genres.length-1]){
+        genreString.push(`${genre}, `)
+      }else{
+        genreString.push(genre)
+      }
+    })
+    return genreString;
+  }
   render() {
     return (
       <div className="card-back">
         <h3 className="title">{this.props.title}</h3>
         <span />
-        { this.generateRatingElement(this.props.rating) }
+        { this.generateRatingElement(this.props.IMDBRating) }
         <span />
-    <h5 className="genres">{this.props.genres.toString()}</h5>
+    <h5 className="genres">{this.generateGenreString(this.props.genres)}</h5>
       </div>
     )
   }
